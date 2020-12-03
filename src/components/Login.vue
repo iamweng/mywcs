@@ -3,7 +3,7 @@
 		<div class="login_box">
 			<el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules" label-width="0px" class="login_from">
 				<!-- Title -->
-				<h1 class="login_title">WMS</h1>
+				<h1 class="login_title">WCS</h1>
 				<!-- Account -->
 				<el-form-item prop="mobile">
 					<el-input @keyup.enter.native="verifyLoginInfo()" v-model="loginForm.mobile" prefix-icon="el-icon-user" ></el-input>
