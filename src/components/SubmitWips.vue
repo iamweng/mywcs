@@ -67,10 +67,11 @@
 				this.$message.success(result.data.msg)
 				this.wipInfo.title = ""
 				this.wipInfo.desc = ""
+				this.getWipsByID()
 			},
 			async getWipsByID() {
 				const result = await this.$http.get('/users/' + this.user.id + "/wips")
-                if(result.data.code !== 200) return this.$message.error(result.data.msg)
+                		if(result.data.code !== 200) return this.$message.error(result.data.msg)
 				this.$message.success(result.data.msg)
 				this.wips = result.data.data
 				console.log(wips)
