@@ -44,7 +44,7 @@
 			async getMyselfInfo() {
 		        const result = await this.$http.get('/info')
                 if(result.data.code !== 200) return this.$message.error(result.data.msg)
-				this.$message.success(result.data.msg)
+				// this.$message.success(result.data.msg)
 				this.user = result.data.data
                 this.getMenuList()
 			},
