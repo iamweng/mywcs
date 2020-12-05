@@ -21,8 +21,8 @@
 					<p class="align_center"> {{ currentOrder.from_city }} ---> {{currentOrder.to_city}}</p>
 					<p class="align_center" style="color:green" v-if="currentOrder.courier_status == 0 && currentOrder.status == 1" >货物正在运输中...</p>
 					<p class="align_center" style="color:green" v-if="currentOrder.courier_status == 1 && currentOrder.status == 1" >货物已完成运输！</p>
-					<el-button v-if="currentOrder.status == 0" type="success" round @click="UpdateOrderStatusByOdrderID()">出发</el-button>
-					<el-button v-if="currentOrder.courier_status == 0 && currentOrder.status == 1" type="danger" round @click="UpdateOrderCourierStatusByOdrderID()">确认</el-button>
+					<el-button v-if="currentOrder.courier_status == 0" type="success" round @click="UpdateOrderCourierStatusByOdrderID()">出发</el-button>
+					<el-button v-if="currentOrder.courier_status == 1 && currentOrder.status == 0" type="danger" round @click="UpdateOrderStatusByOdrderID()">确认</el-button>
 				</el-card>
 				<el-card v-if="JSON.stringify(currentOrder) === '{}'">
 					<h3>运输任务</h3>
@@ -95,13 +95,13 @@
 			if(result.data.code !== 201) return this.$message.error(result.data.msg)
 			this.$message.success(result.data.msg)
 			this.currentOrder.status = 1
+			this.ordersLength += 1
 		},
 		async UpdateOrderCourierStatusByOdrderID() {
 			const result = await this.$http.patch('/orders/' + this.currentOrder.id + '/courierstatus', {"courierstatus": true})
 			if(result.data.code !== 201) return this.$message.error(result.data.msg)
 			this.$message.success(result.data.msg)
 			this.currentOrder.courier_status = 1
-			this.ordersLength += 1
 			
 		},
         },
